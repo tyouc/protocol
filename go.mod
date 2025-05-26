@@ -1,4 +1,4 @@
-module github.com/tyuoc/protocol
+module github.com/tyouc/protocol
 
 go 1.18
 
