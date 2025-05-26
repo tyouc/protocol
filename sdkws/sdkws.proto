@@ -39,6 +39,7 @@ message GroupInfo {
   int32 applyMemberFriend = 15;
   int64 notificationUpdateTime = 16;
   string notificationUserID = 17;
+  bool displayIsRead = 18;
 }
 
 message GroupInfoForSet {
@@ -51,6 +52,7 @@ message GroupInfoForSet {
   openim.protobuf.Int32Value needVerification = 7;
   openim.protobuf.Int32Value lookMemberInfo = 8;
   openim.protobuf.Int32Value applyMemberFriend = 9;
+  openim.protobuf.BoolValue displayIsRead = 10;
 }
 
 message GroupMemberFullInfo {
@@ -73,6 +75,9 @@ message PublicUserInfo {
   string nickname = 2;
   string faceURL = 3;
   string ex = 4;
+  uint32 level = 5;
+  uint32 type = 6;
+  uint64 status = 7;
 }
 
 message UserInfo {
@@ -80,9 +85,12 @@ message UserInfo {
   string nickname = 2;
   string faceURL = 3;
   string ex = 4;
-  int64 createTime = 5;
-  int32 appMangerLevel = 6;
-  int32 globalRecvMsgOpt = 7;
+  uint32 level = 5;
+  uint32 type = 6;
+  uint64 status = 7;
+  int64 createTime = 8;
+  int32 appMangerLevel = 9;
+  int32 globalRecvMsgOpt = 10;
 }
 
 message UserInfoWithEx {
@@ -209,6 +217,8 @@ message MsgData {
   repeated string atUserIDList = 21;
   string attachedInfo = 22;
   string ex = 23;
+  int32 keyVersion = 40;
+  repeated string dstUserIDs = 41;
 }
 message PushMessages {
   map<string, PullMsgs> msgs = 1;
@@ -221,6 +231,9 @@ message OfflinePushInfo {
   string iOSPushSound = 4;
   bool iOSBadgeCount = 5;
   string signalInfo = 6;
+}
+message ServerConfig{
+  bool isEncryption = 1;
 }
 
 message TipsComm {
@@ -553,6 +566,38 @@ message MarkAsReadTips {
   string conversationID = 2;
   repeated int64 seqs = 3;
   int64 hasReadSeq = 4;
+}
+
+message GroupMsgReadTipsUser {
+  string userID = 1;
+  int64 readTime = 2;
+}
+
+message GroupMsgReadTipsRead {
+  string conversationID = 1;
+  string clientMsgID = 2;
+  int64 readNum = 3;
+  int64 unreadNum = 4;
+  repeated GroupMsgReadTipsUser users = 5;
+}
+
+message GroupMsgReadTips {
+  repeated GroupMsgReadTipsRead reads = 1;
+}
+
+message MsgPinnedTips {
+  string conversationID = 1;
+  string userID = 2;
+  int64 seq = 3;
+  int64 time = 4;
+  bool pinned = 5;
+}
+
+message MsgPinnedReadTips {
+  string conversationID = 1;
+  string userID = 2;
+  int64 seq = 3;
+  int64 time = 4;
 }
 
 message SetAppBackgroundStatusReq {
