@@ -3,7 +3,6 @@ module github.com/tyouc/protocol
 go 1.18
 
 require (
-	github.com/openimsdk/protocol v0.0.72
 	google.golang.org/grpc v1.62.1
 	google.golang.org/protobuf v1.33.0
 )
