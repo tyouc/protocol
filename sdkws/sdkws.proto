@@ -75,9 +75,9 @@ message PublicUserInfo {
   string nickname = 2;
   string faceURL = 3;
   string ex = 4;
-  uint32 level = 5;
-  uint32 type = 6;
-  uint64 status = 7;
+  int32 level = 5;
+  int32 type = 6;
+  int64 status = 7;
 }
 
 message UserInfo {
@@ -85,9 +85,9 @@ message UserInfo {
   string nickname = 2;
   string faceURL = 3;
   string ex = 4;
-  uint32 level = 5;
-  uint32 type = 6;
-  uint64 status = 7;
+  int32 level = 5;
+  int32 type = 6;
+  int64 status = 7;
   int64 createTime = 8;
   int32 appMangerLevel = 9;
   int32 globalRecvMsgOpt = 10;
